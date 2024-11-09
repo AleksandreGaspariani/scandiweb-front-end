@@ -32,7 +32,7 @@ export const globalSlice = createSlice({
             const { id: productId, selectedAttributes } = action.payload;
 
             // Generate a unique cartItemId based on productId and timestamp
-            const uniqueCartItemId = `${productId}-${Date.now()}`;
+            const uniqueCartItemId = `${productId}-${new Date().getTime()}`;
 
             // Add the item with the new unique cartItemId
             state.items.push({ 
@@ -49,7 +49,7 @@ export const globalSlice = createSlice({
             const { productId, attributeId, newValueId, cartItemId } = action.payload;
 
             // Find the item in the Redux state
-            const item = state.items.find((i) => i.id === productId);
+            const item = state.items.find((i) => i.cartItemId === cartItemId);
             if (item) {
                 // Update the specific attribute of the item
                 const attribute = item.selectedAttributes.find((attr) => attr.id === attributeId);
@@ -65,7 +65,7 @@ export const globalSlice = createSlice({
         
             // Find and replace the updated item in the cartItems array
             const updatedCartItems = cartItems.map((cartItem) =>
-                cartItem.id === productId ? item : cartItem
+                cartItem.cartItemId === cartItemId ? item : cartItem
             );
         
             // Save the updated cart back to localStorage

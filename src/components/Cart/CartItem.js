@@ -11,7 +11,7 @@ const CartItem = (data) => {
   const dispatch = useDispatch();
   
   const handleAttributeChange = (attributeId, newValueId) => {
-    dispatch(updateCartItemAttributes({productId: item.id, attributeId, newValueId}));
+    dispatch(updateCartItemAttributes({productId: item.id, attributeId, newValueId, cartItemId: item.cartItemId}));
   }
   
   return (
