@@ -15,7 +15,7 @@ const CartItem = (data) => {
   }
   
   return (
-    <div className='flex w-full mt-4 justify-evenly raleway'>
+    <div className='flex w-full py-4 justify-evenly raleway'>
         <div className='flex flex-col' style={{width: '45%'}}>
           <p className='p-0 m-0'>{item.name}</p>
           <small>{item.prices[0]?.currency.symbol}{item.prices[0]?.amount}</small>
@@ -32,14 +32,14 @@ const CartItem = (data) => {
             </div>
           </div>
         </div>
-        <div className='flex flex-col justify-evenly' style={{width: '10%'}}>
-          <button className='border rounded'>
+        <div className='flex flex-col justify-between' style={{width: '10%'}}>
+          <button className='border rounded border-black'>
             +
           </button>
           <p className='raleway text-center'>
             {item.quantity}
           </p>
-          <button className='border rounded'>
+          <button className='border rounded border-black'>
             -
           </button>
         </div>
