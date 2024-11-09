@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import './tailwind.css';
+import './style/header.css'
+
+import Header from './components/Header';
+import Container from './components/Container';
+import Cart from './components/Cart/Cart';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={ <Container /> }/>
+        <Route path="*" element={ <Container /> }/>
+      </Routes>
+    </Router>
+      
   );
 }
 

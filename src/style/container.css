@@ -1,0 +1,29 @@
+.containerItems{
+    width: 28%;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerItems img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.containerItems div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.items-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5rem;
+    row-gap: 4rem;
+}
