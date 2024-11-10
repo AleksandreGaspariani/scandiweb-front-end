@@ -29,6 +29,17 @@ const Container = () => {
 
           <div className='w-full items-wrapper'>
             {/* (id, img, name, price, isInStock) */}
+
+            {/* TODO
+                - **In-stock products**
+                    - Have to be clickable and lead to the Product Details Page (PDP)
+                - **Out-of-Stock Products**
+                    - The Product Image have to be greyed out
+                    - an Out of Stock message have to be visible on the Product Image
+                    - The Quick Shop button (The green cart button) must not be visible
+                    - Product card have to be clickable and lead to the product's main page. However, add-to-cart functionality must not be possible
+            */}
+
             {products.map((singleProduct) => (
               <ContainerItem key={singleProduct.id} product={singleProduct}/>
             ))}

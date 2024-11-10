@@ -14,11 +14,24 @@ const CartItem = (data) => {
     dispatch(updateCartItemAttributes({productId: item.id, attributeId, newValueId, cartItemId: item.cartItemId}));
   }
   
+  /* TODO cart
+    Specific elements inside of cart overlay must have specific attributes
+
+        - Cart item
+        - Container of the cart item attribute must have attribute `data-testid='cart-item-attribute-${attribute name in kebab case}'`
+        - Cart item attribute option must have attribute `data-testid='cart-item-attribute-${attribute name in kebab case}-${attribute name in kebab case}'`.
+        - Selected cart item attribute option must have attribute `data-testid='cart-item-attribute-${attribute name in kebab case}-${attribute name in kebab case}-selected'`
+        - Button to decrease quantity must have attribute `data-testid='cart-item-amount-decrease'`
+        - Button to increase quantity must have attribute `data-testid='cart-item-amount-increase'`
+        - Cart item amount indicator must have attribute `data-testid='cart-item-amount'`
+        - Cart total element must have attribute `data-testid='cart-total'`
+  */
+
   return (
     <div className='flex w-full py-4 justify-evenly raleway'>
         <div className='flex flex-col' style={{width: '45%'}}>
           <p className='p-0 m-0'>{item.name}</p>
-          <small>{item.prices[0]?.currency.symbol}{item.prices[0]?.amount}</small>
+          <small>{item.prices[0]?.currency.symbol}{item.prices[0]?.amount * item.quantity}</small>
           <div className='flex flex-col'> 
             <div className='flex flex-col'>
             {item.attributes.map((attr) => (
@@ -34,13 +47,15 @@ const CartItem = (data) => {
         </div>
         <div className='flex flex-col justify-between' style={{width: '10%'}}>
           <button className='border rounded border-black'>
-            +
+            + 
+            {/* // FIXME  */}
           </button>
           <p className='raleway text-center'>
             {item.quantity}
           </p>
           <button className='border rounded border-black'>
             -
+            {/* // FIXME  */}
           </button>
         </div>
         <div style={{width: '45%'}}>

@@ -50,6 +50,8 @@ const Cart = () => {
 
   totalAmount();
 
+  // TODO- custom width for the cart, cuz at this moment it have h-auto so, depent on how many items do u have there the cart starts grow and grow.
+
   return (
     <div className={`absolute right-10 bg-dark w-80 min-h-40 max-h-100 align-left ${ activeCart ? 'block' : 'hidden'}`} id='cart'>
         <div className='relative w-full h-full px-4 py-2 bg-white rounded-b-lg shadow-xl'>
@@ -69,6 +71,7 @@ const Cart = () => {
             <div className='w-full mt-8'>
               <button className='btn w-full bg-green-400 font-light py-2 text-white'>
                 Place Order
+                {/* FIXME If a cart is empty the button shall be greyed out and disabled */}
               </button>
             </div>
           </div>
