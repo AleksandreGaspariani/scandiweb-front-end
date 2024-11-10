@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCartItemAttributes } from '../../redux/globalReducer';
+import { updateCartItemAttributes, addItem, removeItem } from '../../redux/globalReducer';
 import CartAttribute from './CartAttribute';
 
 const CartItem = (data) => {
@@ -27,11 +27,20 @@ const CartItem = (data) => {
         - Cart total element must have attribute `data-testid='cart-total'`
   */
 
+  const handleAddToCart = () => {
+    // Dispatch the entire item object as the payload
+    dispatch(addItem(item));
+  };
+  const handleRemoveFromCart = () => {
+    // Dispatch the entire item object as the payload
+    dispatch(removeItem(item.cartItemId));
+  };
+
   return (
     <div className='flex w-full py-4 justify-evenly raleway'>
         <div className='flex flex-col' style={{width: '45%'}}>
           <p className='p-0 m-0'>{item.name}</p>
-          <small>{item.prices[0]?.currency.symbol}{item.prices[0]?.amount * item.quantity}</small>
+          <small>{item.prices[0]?.currency.symbol}{(item.prices[0]?.amount * item.quantity).toFixed(2)}</small>
           <div className='flex flex-col'> 
             <div className='flex flex-col'>
             {item.attributes.map((attr) => (
@@ -46,16 +55,14 @@ const CartItem = (data) => {
           </div>
         </div>
         <div className='flex flex-col justify-between' style={{width: '10%'}}>
-          <button className='border rounded border-black'>
+          <button className='border rounded border-black' onClick={handleAddToCart}>
             + 
-            {/* // FIXME  */}
           </button>
           <p className='raleway text-center'>
             {item.quantity}
           </p>
-          <button className='border rounded border-black'>
+          <button className='border rounded border-black' onClick={handleRemoveFromCart}>
             -
-            {/* // FIXME  */}
           </button>
         </div>
         <div style={{width: '45%'}}>

@@ -45,12 +45,8 @@ const Cart = () => {
     items.forEach(itemPrice => {
       priceSum += Number(itemPrice.prices[0].amount);
     });
-    return priceSum;
+    return priceSum.toFixed(2);
   };
-
-  totalAmount();
-
-  // TODO- custom width for the cart, cuz at this moment it have h-auto so, depent on how many items do u have there the cart starts grow and grow.
 
   return (
     <div className={`absolute right-10 bg-dark w-80 min-h-40 max-h-100 align-left ${ activeCart ? 'block' : 'hidden'}`} id='cart'>

@@ -10,21 +10,6 @@ export const globalSlice = createSlice({
         items: JSON.parse(localStorage.getItem('cartItems')) || [],
     },
     reducers: { 
-        increment: (state, action) => {
-            state.cart += 1;
-            localStorage.setItem('cart', Number(state.cart));
-
-            localStorage.setItem('cartItems', JSON.stringify(action.payload));
-        },
-        decrement: (state) => {
-            if (state.cart > 0) {
-                state.cart -= 1;
-                localStorage.setItem('cart',  Number(state.cart));
-                if (state.cart === 0) {
-                    localStorage.removeItem('cart');
-                }
-            }
-        },
         isCartActive: (state) => {
             state.activeCart = !state.activeCart;
         },
@@ -43,6 +28,30 @@ export const globalSlice = createSlice({
 
             // Save the updated cart to localStorage
             localStorage.setItem('cartItems', JSON.stringify(state.items));
+
+            state.cart += 1;
+            localStorage.setItem('cart', Number(state.cart));
+        },
+        removeItem: (state, action) => {
+            // Filter out the item to be removed by its unique cartItemId
+
+            console.log(action.payload);
+            
+            const updatedItems = state.items.filter(
+              (item) => item.cartItemId !== action.payload
+            );
+      
+            // Update state and localStorage
+            state.items = updatedItems;
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+
+            if (state.cart > 0) {
+                state.cart -= 1;
+                localStorage.setItem('cart',  Number(state.cart));
+                if (state.cart === 0) {
+                    localStorage.removeItem('cart');
+                }
+            }
         },
         updateCartItemAttributes: (state, action) => {
 
@@ -80,7 +89,7 @@ export const globalSlice = createSlice({
     }
 })
 
-export const { increment, decrement, isCartActive, addItem ,setActiveNav,updateCartItemAttributes } = globalSlice.actions;
+export const { isCartActive, addItem, removeItem ,setActiveNav,updateCartItemAttributes } = globalSlice.actions;
 
 
 export default globalSlice.reducer;

@@ -4,7 +4,7 @@ import cart from '../logos/cart.png'
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { increment, decrement, addItem } from '../redux/globalReducer';
+import { addItem } from '../redux/globalReducer';
 
 const ContainerItem = (product) => {
 
@@ -26,8 +26,6 @@ const ContainerItem = (product) => {
             quantity: 1,
           };
       
-          // Dispatch action to add product to cart
-          dispatch(increment());
           dispatch(addItem(productToAdd));
         }
       };
