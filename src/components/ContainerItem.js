@@ -11,7 +11,7 @@ const ContainerItem = (product) => {
     const dispatch = useDispatch();
     const [isHovered, setIsHovered] = useState(false);
     const prodData = product['product'];
-
+    const [isStock, setIsStock] = useState(prodData.inStock);
     const handleAddToCart = () => {
         if (prodData.inStock) {
           // Create a product object with default attribute values
@@ -36,7 +36,7 @@ const ContainerItem = (product) => {
       */
 
   return (
-    <div className='relative overflow-hidden containerItems p-3 bg-white hover:bg-gray-200 rounded' 
+    <div className='relative overflow-hidden containerItems p-3 bg-white rounded hover:shadow-2xl cursor-pointer' 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
     >
@@ -50,6 +50,11 @@ const ContainerItem = (product) => {
               </div>
           </div>
       )} 
+      {!isStock && (
+        <div className={`absolute w-full h-full bg-gray-300/50`}>
+          <h1 className='absolute top-24 left-10 text-6xl text-red-300 rotate-45'>Out Of Stock</h1>
+        </div>
+      )}
       {/* Check if product is inStock by true, false values */}
       <img src={prodData.gallery[0]} className='object-contain rounded'></img>
       <div>
