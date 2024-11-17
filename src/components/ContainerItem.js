@@ -5,6 +5,7 @@ import cart from '../logos/cart.png'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../redux/globalReducer';
+import { Link } from 'react-router-dom';
 
 const ContainerItem = (product) => {
 
@@ -36,19 +37,32 @@ const ContainerItem = (product) => {
       */
 
   return (
-    <div className='relative overflow-hidden containerItems p-3 bg-white rounded hover:shadow-2xl cursor-pointer' 
+    <Link to={`/product/${prodData.id}`} className='relative overflow-hidden containerItems p-3 bg-white rounded hover:shadow-2xl cursor-pointer duration-300' 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
     >
       {isHovered && (
-          <div className={`absolute right-4 bottom-12 ${prodData.inStock ? 'bg-green-500 hover:bg-green-400 cursor-pointer' : 'bg-gray-300 cursor-not-allowed'} rounded-full `} 
-              style={{display: 'flex', width: '40px', height: '40px', justifyContent: 'center' }}
-              onClick ={handleAddToCart}>
-              
-              <div className='flex overflow-hidden' style={{justifyContent: 'center', alignItems: 'center'}}>
-                  <img src='https://img.icons8.com/?size=100&id=15893&format=png&color=FFFFFF' style={{height: '26px', width: '26px'}} />
-              </div>
+          <div
+          className={`absolute right-4 bottom-12 ${
+            prodData.inStock ? 'bg-green-500 hover:bg-green-400 cursor-pointer' : 'bg-gray-300 cursor-not-allowed'
+          } rounded-full`}
+          style={{ display: 'flex', width: '40px', height: '40px', justifyContent: 'center', zIndex: 5 }}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent click from propagating to the <Link>
+            e.preventDefault(); // Prevent the default behavior of the Link
+            handleAddToCart(); // Run the add-to-cart function
+          }}
+        >
+          <div
+            className="flex overflow-hidden"
+            style={{ justifyContent: 'center', alignItems: 'center' }}
+          >
+            <img
+              src="https://img.icons8.com/?size=100&id=15893&format=png&color=FFFFFF"
+              style={{ height: '26px', width: '26px' }}
+            />
           </div>
+        </div>
       )} 
       {!isStock && (
         <div className={`absolute w-full h-full bg-gray-300/50`}>
@@ -61,7 +75,7 @@ const ContainerItem = (product) => {
           <p className='raleway mt-2'>{prodData.name}</p>
           <small className='raleway font-bold'>{prodData.prices[0]?.currency.symbol}{prodData.prices[0]?.amount}</small>
       </div>
-    </div>
+    </Link>
   )
 }
 
