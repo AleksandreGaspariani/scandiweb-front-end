@@ -8,10 +8,14 @@ export const globalSlice = createSlice({
         activeNav: 0,
         labelNav: ['All', 'Clothes', 'Tech'],
         items: JSON.parse(localStorage.getItem('cartItems')) || [],
+        pdpImage: null,
     },
     reducers: { 
         isCartActive: (state) => {
             state.activeCart = !state.activeCart;
+        },
+        setPdpImage: (state, action) => {
+            state.pdpImage = action.payload
         },
         addItem: (state, action) => {
             const { id: productId, selectedAttributes } = action.payload;
@@ -89,7 +93,7 @@ export const globalSlice = createSlice({
     }
 })
 
-export const { isCartActive, addItem, removeItem ,setActiveNav,updateCartItemAttributes } = globalSlice.actions;
+export const { isCartActive, addItem, removeItem , setActiveNav, updateCartItemAttributes, setPdpImage } = globalSlice.actions;
 
 
 export default globalSlice.reducer;

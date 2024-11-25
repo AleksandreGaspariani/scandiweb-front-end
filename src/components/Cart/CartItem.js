@@ -49,6 +49,7 @@ const CartItem = (data) => {
                 attribute={attr}
                 selectedValue={item.selectedAttributes.find((a) => a.id === attr.id)?.selectedValue}
                 onAttributeChange={handleAttributeChange}
+                pdp = {false}
               />
             ))}
             </div>

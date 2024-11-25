@@ -44,7 +44,7 @@ const ContainerItem = (product) => {
       {isHovered && (
           <div
           className={`absolute right-4 bottom-12 ${
-            prodData.inStock ? 'bg-green-500 hover:bg-green-400 cursor-pointer' : 'bg-gray-300 cursor-not-allowed'
+            prodData.inStock ? 'bg-green-500 hover:bg-green-400 cursor-pointer' : 'bg-gray-300 cursor-not-allowed opacity-0'
           } rounded-full`}
           style={{ display: 'flex', width: '40px', height: '40px', justifyContent: 'center', zIndex: 5 }}
           onClick={(e) => {
